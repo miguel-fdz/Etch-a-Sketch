@@ -1,4 +1,5 @@
 let color = 'black'; 
+newGrid(30); //initialize board at 30x30 pixels
 
 /** First remove entirety of previous grid if it exists,    
  * 
@@ -69,9 +70,17 @@ function randomizeColor() {
  * new grid size and then rebuild accordingly
  */
 function resize() {
-  const newSize = prompt('How large would you like the grid area to be?', '16');
+  const newSize = prompt('How large would you like the grid area to be? \nMust be between 0 and 100 pixels', '16');
   if (newSize > 0 && newSize <= 100 && newSize !== null) newGrid(newSize);
   else alert('Please supply a number greater than zero but less than 100')
 }
 
-newGrid(30);
+//Change hover button color for rainbow color scheme
+paintColor.addEventListener("mouseenter", () => {
+  if(paintColor.value == "Rainbow") paintColor.style.backgroundColor = randomizeColor();
+  else paintColor.style.backgroundColor = "#286f6c"
+});
+
+paintColor.addEventListener("mouseleave", () => {
+  if(paintColor.value == "Black") paintColor.style.backgroundColor = "#fff"
+});
